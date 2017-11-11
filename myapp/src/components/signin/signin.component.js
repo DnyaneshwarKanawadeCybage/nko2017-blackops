@@ -4,15 +4,15 @@ import React, { Component } from 'react';
 class Signin extends Component {
   render() {
     return (
-      <nav className="signin-component">
+      <nav className="signin-component field">
         <p class="panel-heading">
-          Please provide your identity
+          Step 1. Provide your identity
         </p>
         <div className="panel-block">
-          <div class="content">
-            <blockquote>
+          <div className="content">
+            <div className="notification">
               To get your username and password, you'll need to <a href="https://console.ng.bluemix.net/registration/" target="_blank">sign up for IBM Bluemix</a>
-            </blockquote>
+            </div>
           </div>
           <div className="field">
             <label className="label">Username</label>
