@@ -1,23 +1,23 @@
 {
-  "name": "myapp",
-  "version": "0.0.0",
+  "name": "jarvis",
+  "description": "Jarvis is a Hackbit hackathon app to demo Node.js with IBM Watson for Natural Language Understanding",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "npm run build && node ./bin/www",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
-    "react-scripts": "1.0.17",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-validator": "^4.3.0",
     "morgan": "~1.9.0",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-scripts": "1.0.17",
     "watson-developer-cloud": "^2.42.0"
   }
 }

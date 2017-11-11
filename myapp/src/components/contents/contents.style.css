@@ -1,0 +1,11 @@
+.contents-component .panel-block {
+  flex-direction: column;
+}
+
+.contents-component .content, .contents-component .field {
+  width: 100%;
+}
+
+.contents-component textarea {
+  height: 236px;
+}
