@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import AnalysisReport from './components/analysisReport/analysisReport.component';
 import FilterBoard from './components/filterBoard/filterBoard.component';
@@ -7,26 +8,19 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   report: {},
-    //   username: "",
-    //   password: ""
-    // }
-    // this.analysisReport = this.analysisReport.bind(this);
-    // this.requiredInfo = this.requiredInfo.bind(this);
+    this.analyze = this.analyze.bind(this);
   }
 
-  // analysisReport(report) {
-  //   console.log('REPORT: ', report);
-  //   this.setState({
-  //     report: report
-  //   });
-  // }
-
-  // requiredInfo(fields) {
-  //   const { username, password } = fields;
-    
-  // }
+  analyze(confirmFields) {
+    axios.post('/analyze', confirmFields)
+    .then(function (response) {
+      console.log('res: ', response);
+      return response;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   render() {
     return (
@@ -39,7 +33,7 @@ class App extends Component {
         <div className="container">
           <div className="columns">
             <div className="column">
-              <FilterBoard />              
+              <FilterBoard analyze={this.analyze}/>              
             </div>
             <div className="column">
               <AnalysisReport />

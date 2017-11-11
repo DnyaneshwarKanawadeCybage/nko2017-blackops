@@ -7,27 +7,35 @@ class FilterBoard extends Component {
   constructor(props) {
     super(props);
 
-    this.analysisReport = this.analysisReport.bind(this);
     this.requiredInfo = this.requiredInfo.bind(this);
-  }
-
-  analysisReport(report) {
-    console.log('REPORT: ', report);
-    this.setState({
-      report: report
-    });
+    this.confirmFields = {};
   }
 
   requiredInfo(fields) {
-    const { username, password } = fields;
+    let { username, password, text } = fields;
+
+    if (username) {
+      this.confirmFields.username = username;
+    }
+
+    if (password) {
+      this.confirmFields.password = password;
+    }
+
+    if (text) {
+      this.confirmFields.text = text;
+    }
     
+    if (this.confirmFields.username && this.confirmFields.password && this.confirmFields.text) {
+      this.props.analyze(this.confirmFields);
+    }
   }
 
   render() {
     return (
       <div className="filter-board-component">
         <Signin requiredInfo={this.requiredInfo}/>
-        <Contents analysisReport={this.analysisReport}/>
+        <Contents requiredInfo={this.requiredInfo}/>
       </div>
     );
   }

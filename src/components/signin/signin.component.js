@@ -1,18 +1,33 @@
 import './signin.style.css';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 class Signin extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      username: '',
+      password: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
     this.confirm = this.confirm.bind(this);
   }
 
+  handleChange(event) {
+    const {
+      name,
+      value
+    } = event.target;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
   confirm() {
-    this.props.requiredInfo({
-      username: "abc",
-      password: "abc"
-    })
+    this.props.requiredInfo(this.state);
   }
 
   render() {
@@ -27,7 +42,7 @@ class Signin extends Component {
         <div className="field">
           <label className="label">Username</label>
           <div className="control has-icons-left">
-            <input className="input" type="text" placeholder="E.g. 5ae77df8-c9d9-4f0b-56aa-aa6b2c7bd881" />
+            <input name="username" value={this.state.username} onChange={this.handleChange} className="input" type="text" placeholder="E.g. 5ae77df8-c9d9-4f0b-56aa-aa6b2c7bd881" />
             <span className="icon is-small is-left">
               <i className="fa fa-lg fa-user"></i>
             </span>
@@ -36,12 +51,13 @@ class Signin extends Component {
         <div className="field">
           <label className="label">Password</label>
           <div className="control has-icons-left">
-            <input className="input" type="password" placeholder="E.g. UTBtrhRLBgLI" />
+            <input name="password" value={this.state.password} onChange={this.handleChange} className="input" type="password" placeholder="E.g. UTBtrhRLBgLI" />
             <span className="icon is-small is-left">
               <i className="fa fa-lg fa-key"></i>
             </span>
           </div>
-        </div>        
+        </div>
+        <button className="button is-primary is-fullwidth" onClick={this.confirm}>Confirm</button>
       </div>
     );
   }
