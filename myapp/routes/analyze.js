@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { check, validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
+const { HTTP_STATUS } = require('../constants');
 
 const router = Router();
 
@@ -12,7 +13,10 @@ router.post('/', [
 ], (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.mapped() });
+    return next({
+      status: HTTP_STATUS.CLIENT.UNPROCESSABLE_ENTITY.CODE,
+      message: errors.mapped()
+    });
   }
 
   const {
@@ -45,10 +49,19 @@ router.post('/', [
 
   nlu.analyze(parameters, function(err, response) {
     if (err) {
-      return next({
-        status: err.code,
+      let errRes = {
+        errRes: err.code,
         message: err.error
-      });
+      }
+
+      if (err.code === HTTP_STATUS.CLIENT.UNAUTHORIZED.CODE) {
+        errRes = {
+          errRes: HTTP_STATUS.CLIENT.UNAUTHORIZED.CODE,
+          message: "Bluemix is not to authenticate your credentials. To get your username and password, you'll need to sign up for IBM Bluemix"
+        }
+      }
+      
+      return next(errRes);
     }
     
     res.send(JSON.stringify(response, null, 2));

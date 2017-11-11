@@ -1,25 +1,23 @@
 'use strict';
 
+const { HTTP_STATUS } = require('./constants');
+
 module.exports = {
   ForwardErrorHandler(req, res, next) {
-    let err = new Error('Not Found');
-    err.status = 404;
+    let err = new Error(HTTP_STATUS.CLIENT.NOT_FOUND.MSG);
+    err.status = HTTP_STATUS.CLIENT.NOT_FOUND.CODE;
     next(err);
   },
 
   ErrorHandler(err, req, res, next) {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === "development" ? err : {};
-  
-    if (err.status === 401) {
-      res.status(err.status).send({
-        "message": res.locals.message
-      });
-    } else {
-      res.status(err.status || 500).send({
-        "message": "Internal Server Error!"
-      });
-    }
+    const {
+      status,
+      message
+    } = err;
+
+    res.status(status || HTTP_STATUS.SERVER.INTERNAL_SERVER_ERROR.CODE).send({
+      message: message || HTTP_STATUS.SERVER.INTERNAL_SERVER_ERROR.MSG
+    });
 
     next();
   }
