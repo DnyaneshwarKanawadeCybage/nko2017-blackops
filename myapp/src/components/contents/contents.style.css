@@ -1,8 +1,4 @@
-.contents-component .panel-block {
-  flex-direction: column;
-}
-
-.contents-component .content, .contents-component .field {
+.contents-component {
   width: 100%;
 }
 

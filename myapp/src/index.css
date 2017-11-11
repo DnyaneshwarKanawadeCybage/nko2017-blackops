@@ -11,3 +11,7 @@ body {
 .app-component {
   padding: 0;
 }
+
+.filter-board-component .panel-block {
+  flex-direction: column;
+}

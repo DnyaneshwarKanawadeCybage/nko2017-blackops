@@ -1,7 +1,8 @@
-.signin-component .panel-block {
-  flex-direction: column;
+.signin-component {
+  margin-bottom: 30px;
+  width: 100%;
 }
 
-.signin-component .content, .signin-component .field {
-  width: 100%;
+.signin-component .panel-block {
+  flex-direction: column;
 }

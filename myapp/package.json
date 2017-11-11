@@ -9,6 +9,7 @@
     "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
+    "axios": "^0.17.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
