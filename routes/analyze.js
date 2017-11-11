@@ -8,8 +8,7 @@ const router = Router();
 
 router.post('/', [
   check('username').trim(),
-  check('password', 'passwords must be at least 5 chars long and contain one number').isLength({ min: 5 }),
-  check('text', 'text must be at least 140 chars long and contain one number').isLength({ min: 140 })
+  check('password', 'passwords must be at least 5 chars long and contain one number').isLength({ min: 5 })  
 ], (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -22,7 +21,8 @@ router.post('/', [
   const {
     username,
     password,
-    text
+    text,
+    url
   } = matchedData(req);
   
   const nlu = new NaturalLanguageUnderstandingV1({
@@ -31,8 +31,7 @@ router.post('/', [
     'version_date': '2017-02-27'
   });
     
-  const parameters = {
-    'text': text,
+  let parameters = {
     'features': {
       'entities': {
         'emotion': true,
@@ -47,6 +46,12 @@ router.post('/', [
     }
   }
 
+  if (url) {
+    parameters.url = url;
+  } else {
+    parameters.text = text;
+  }
+  
   nlu.analyze(parameters, function(err, response) {
     if (err) {
       let errRes = {

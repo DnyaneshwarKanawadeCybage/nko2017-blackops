@@ -8,14 +8,20 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      data: {}
+    }
     this.analyze = this.analyze.bind(this);
   }
 
   analyze(confirmFields) {
+    const _self = this;
+
     axios.post('/analyze', confirmFields)
     .then(function (response) {
-      console.log('res: ', response);
-      return response;
+      _self.setState({
+        data: response
+      });
     })
     .catch(function (error) {
       console.log(error);
@@ -36,7 +42,7 @@ class App extends Component {
               <FilterBoard analyze={this.analyze}/>              
             </div>
             <div className="column">
-              <AnalysisReport />
+              <AnalysisReport reports={this.state.data}/>
             </div>
           </div>
         </div>

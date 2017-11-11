@@ -1,6 +1,5 @@
 import './signin.style.css';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 class Signin extends Component {
   constructor(props) {

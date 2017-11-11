@@ -1,6 +1,5 @@
 import './contents.style.css';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 class Contents extends Component {
   constructor(props) {
@@ -10,6 +9,8 @@ class Contents extends Component {
       text: 'Raj Reddy, is an Indian-American computer scientist and a winner of the Turing Award. He is one of the early pioneers of Artificial Intelligence and has served on the faculty of Stanford and Carnegie Mellon University for over 40 years. He was the founding director of the Robotics Institute at Carnegie Mellon University. He was instrumental in helping to create Rajiv Gandhi University of Knowledge Technologies in India, to cater to the educational needs of the low-income, gifted, rural youth. He is the chairman of International Institute of Information Technology, Hyderabad. He is the first person of Asian origin to receive the ACM Turing Award, in 1994, the highest award in Computer Science, for his work in the field of Artificial Intelligence.',
       url: 'https://en.wikipedia.org/wiki/Raj_Reddy'
     };
+
+    this.isUrl = false;
     
     this.handleChange = this.handleChange.bind(this);
     this.analyze = this.analyze.bind(this);
@@ -20,13 +21,19 @@ class Contents extends Component {
   switchToContentArea(event) {
     event.preventDefault();
     this.refs.websiteLinkTabContent.classList.add('is-hidden');
+    this.refs.contentAreaTab.classList.add('is-active');
     this.refs.contentAreaTabContent.classList.remove('is-hidden');
+    this.refs.websiteLinkTab.classList.remove('is-active');
+    this.isUrl = false;
   }
 
   switchToWebsiteLink(event) {
     event.preventDefault();
-    this.refs.websiteLinkTabContent.classList.remove('is-hidden');
     this.refs.contentAreaTabContent.classList.add('is-hidden');
+    this.refs.websiteLinkTab.classList.add('is-active');
+    this.refs.websiteLinkTabContent.classList.remove('is-hidden');
+    this.refs.contentAreaTab.classList.remove('is-active');
+    this.isUrl = true;
   }
 
   handleChange(event) {
@@ -41,7 +48,7 @@ class Contents extends Component {
   }
 
   analyze() {
-    this.props.requiredInfo(this.state);
+    this.props.requiredInfo(this.state, this.isUrl);
   }
 
   render() {
@@ -57,13 +64,13 @@ class Contents extends Component {
 
         <div className="tabs">
           <ul>
-            <li className="is-active">
+            <li ref="contentAreaTab" className="is-active">
               <a onClick={this.switchToContentArea}>
                 <span className="icon is-small"><i className="fa fa-lg fa-sticky-note"></i></span>
                 <span>Content area</span>
               </a>
             </li>
-            <li>
+            <li ref="websiteLinkTab">
               <a onClick={this.switchToWebsiteLink}>
                 <span className="icon is-small"><i className="fa fa-lg fa-external-link"></i></span>
                 <span>Website link</span>

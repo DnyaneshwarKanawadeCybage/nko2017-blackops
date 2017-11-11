@@ -11,7 +11,7 @@ class FilterBoard extends Component {
     this.confirmFields = {};
   }
 
-  requiredInfo(fields) {
+  requiredInfo(fields, isUrl = false) {
     const {
       username,
       password,
@@ -27,11 +27,11 @@ class FilterBoard extends Component {
       this.confirmFields.password = password;
     }
 
-    if (text) {
+    if (!isUrl && text) {
       this.confirmFields.text = text;
     }
 
-    if (url) {
+    if (isUrl && url) {
       this.confirmFields.url = url;
     }
     
