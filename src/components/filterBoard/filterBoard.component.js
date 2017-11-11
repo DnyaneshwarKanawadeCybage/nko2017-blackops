@@ -12,7 +12,12 @@ class FilterBoard extends Component {
   }
 
   requiredInfo(fields) {
-    let { username, password, text } = fields;
+    const {
+      username,
+      password,
+      text,
+      url
+    } = fields;
 
     if (username) {
       this.confirmFields.username = username;
@@ -25,8 +30,12 @@ class FilterBoard extends Component {
     if (text) {
       this.confirmFields.text = text;
     }
+
+    if (url) {
+      this.confirmFields.url = url;
+    }
     
-    if (this.confirmFields.username && this.confirmFields.password && this.confirmFields.text) {
+    if (this.confirmFields.username && this.confirmFields.password && (this.confirmFields.text || this.confirmFields.url)) {
       this.props.analyze(this.confirmFields);
     }
   }
