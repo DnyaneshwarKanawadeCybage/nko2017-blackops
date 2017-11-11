@@ -1,14 +1,52 @@
 import React, { Component } from 'react';
 
 class AnalysisReport extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
+  entitiesTable(entity) {
+    let {
+      text,
+      type,
+      relevance
+    } = entity;
+
     return (
-      <nav className="analysis-report-component">
-        <p class="title is-3">Analysis Report</p>
-      </nav>
+      <tr>
+        <td>{text}</td>
+        <td>{type}</td>
+        <td>{relevance}</td>
+      </tr>
+    )
+  }
+
+  render() {
+    const {
+      entities
+    } = this.props.reports;
+
+    let entitiesList = [];
+    if (entities) {
+      entitiesList = entities.map((entity) => this.entitiesTable(entity));
+    }
+
+    return (
+      <div className="analysis-report-component">
+        <p className="title is-3">Analysis Report</p>
+
+        {entities &&
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Text</th>
+                <th>Type</th>
+                <th>relevance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {entitiesList}
+            </tbody>
+          </table>
+        }
+
+      </div>
     );
   }
 }

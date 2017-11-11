@@ -8,7 +8,9 @@ const router = Router();
 
 router.post('/', [
   check('username').trim(),
-  check('password', 'passwords must be at least 5 chars long and contain one number').isLength({ min: 5 })  
+  check('password', 'passwords must be at least 5 chars long and contain one number').isLength({ min: 5 }),
+  check('text').optional(),
+  check('url').optional()
 ], (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -69,7 +71,7 @@ router.post('/', [
       return next(errRes);
     }
     
-    res.send(JSON.stringify(response, null, 2));
+    res.send(response);
   });
 
 });

@@ -35,7 +35,7 @@ class Signin extends Component {
         <p class="title is-4">Step 1. Provide your identity</p>
         <div className="content">
           <div className="notification">
-            To get your username and password, you'll need to <a href="https://console.ng.bluemix.net/registration/" target="_blank">sign up for IBM Bluemix</a>
+            To get your username and password, you'll need to <a rel="noopener noreferrer" href="https://console.ng.bluemix.net/registration/" target="_blank">sign up for IBM Bluemix</a>
           </div>
         </div>
         <div className="field">
