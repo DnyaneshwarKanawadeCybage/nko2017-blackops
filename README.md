@@ -27,6 +27,12 @@ npm start
 http://localhost:3000
 ```
 
+## Screen shots
+
+### Release version 0.0.2
+
+<img src="https://raw.githubusercontent.com/Hackbit/nko2017-blackops/develop/release_0_0_2.png?token=AEc52PUHvvOHBDrmtgJQEYdIVAdOb_kjks5aEMu2wA%3D%3D" alt="Release 0.0.2 Screen Shot"/>
+
 ## About author
 
 Developed with :heart: by [Ashwin Hegde](https://github.com/hegdeashwin)
