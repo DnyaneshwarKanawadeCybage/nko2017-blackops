@@ -19,6 +19,7 @@
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-scripts": "1.0.17",
+    "react-vis": "^1.7.9",
     "watson-developer-cloud": "^2.42.0"
   },
   "engines": {

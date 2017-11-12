@@ -1,4 +1,6 @@
+import './report.style.css';
 import React, { Component } from 'react';
+import Graph from './graph.component';
 
 class AnalysisReport extends Component {
   entitiesTable(entity) {
@@ -14,7 +16,7 @@ class AnalysisReport extends Component {
         <td>{type}</td>
         <td>{relevance}</td>
       </tr>
-    )
+    );
   }
 
   render() {
@@ -23,6 +25,7 @@ class AnalysisReport extends Component {
     } = this.props.reports;
 
     let entitiesList = [];
+
     if (entities) {
       entitiesList = entities.map((entity) => this.entitiesTable(entity));
     }
@@ -32,18 +35,26 @@ class AnalysisReport extends Component {
         <p className="title is-3">Analysis Report</p>
 
         {entities &&
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Text</th>
-                <th>Type</th>
-                <th>relevance</th>
-              </tr>
-            </thead>
-            <tbody>
-              {entitiesList}
-            </tbody>
-          </table>
+          <div className="graph-container">
+            <Graph data={entities}/>
+          </div>
+        }
+
+        {entities &&
+          <div className="body-scroll">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Text</th>
+                  <th>Type</th>
+                  <th>Relevance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {entitiesList}
+              </tbody>
+            </table>
+          </div>
         }
 
       </div>
