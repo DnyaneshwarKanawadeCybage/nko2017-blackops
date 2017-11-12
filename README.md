@@ -52,6 +52,7 @@ To get your username and password, you'll need to [sign up for IBM Bluemix](http
 
 ## Upcoming Possibilities
 
+* Handing validations on front-end
 * [Slack Integration](https://get.slack.help/hc/en-us)
 * [Graph Integration](http://graphql.org/learn/)
 

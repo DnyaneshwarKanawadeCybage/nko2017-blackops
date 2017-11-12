@@ -36,14 +36,7 @@ router.post('/', [
   let parameters = {
     'features': {
       'entities': {
-        'emotion': true,
-        'sentiment': true,
-        'limit': 2
-      },
-      'keywords': {
-        'emotion': true,
-        'sentiment': true,
-        'limit': 2
+        'limit': 50 // Default
       }
     }
   }
